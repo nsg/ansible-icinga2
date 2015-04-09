@@ -1,0 +1,11 @@
+---
+
+- name: Setup packages needed by Icinga 2 web
+  yum: name={{ item }}
+  with_items:
+    - mariadb-server
+    - mariadb
+    - icinga2-ido-mysql
+
+- name: Make sure that MariaDB is started
+  service: name=mariadb enabled=yes state=started

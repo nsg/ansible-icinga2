@@ -1,0 +1,14 @@
+---
+
+- name: Setup Icinga 2 repo key
+  rpm_key: key=http://packages.icinga.org/icinga.key
+
+- name: Setup Icinga 2 repo
+  get_url:
+    url: http://packages.icinga.org/epel/ICINGA-release.repo
+    dest: /etc/yum.repos.d/ICINGA-release.repo
+    sha256sum: 6d695953ca6717fccb5a1835b1e7df2312d1a49c806ac599466f89a906b71f96
+
+- name: Install Icinga 2
+  yum: name=icinga2
+  notify: restart icinga2
